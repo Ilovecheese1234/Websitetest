@@ -13,14 +13,16 @@
     background-color: black;
     z-index:-1000;
 }
-
+html{
+    scroll-behavior: smooth;
+}
 body{
     background-color: #000000;
     display: inline-flex;
     padding: 0px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: scroll;
-    scroll-behavior: smooth;
+    
 }
 
 @keyframes fadeAway{
@@ -35,7 +37,6 @@ body{
     top:0;
     z-index: -100;
     opacity: 0;
-    background-color: red;
     
 }
 #cheeseCursor{
@@ -162,16 +163,18 @@ body>#topBar>#closeApp{
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 #body>#mainIntro>#intro{
     position:relative;
-    width:70%;
-    height:70%;
+    width:100%;
+    height:100%;
     color:white;
    display: flex;
    align-items: center;
    justify-content: center;
    flex-direction: column;
+
     
 }
 #body>#mainIntro>#intro>#introContainer{
@@ -199,7 +202,7 @@ body>#topBar>#closeApp{
     font-weight: bold;
 }
 
-@media screen and (min-width:550px){
+@media screen and (min-width:700px) {
     #body>#mainIntro>#intro>#introContainer>.text{
         font-size:x-large;
     }
@@ -271,7 +274,7 @@ body>#topBar>#closeApp{
         display: flex;
         position: relative;
         left:-50%;
-        top:20%;
+        top:50%;
         align-items: last baseline;
         grid-area: 2 / 3 / span 1 / span 1;
         color:lightblue;
@@ -311,7 +314,7 @@ body>#topBar>#closeApp{
          @keyframes moveVertically{
         to{
              opacity: 1;
-            top:0;
+            top:-10%;;
         }
     }
     @keyframes moveHorizontally{
@@ -333,8 +336,52 @@ body>#topBar>#closeApp{
         }
     }
 }
+    #body>#mainIntro>#intro>#movingCursor1{
+        position:absolute;
+        width:2vw;
+        height:vw;
+        background-image: url("image/pointer.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        z-index:1;
+    }
 
-@media screen and (max-width:550px) {
+    #body>#mainIntro>#intro>#movingCursor1:after{
+        content: "dev";
+        position: relative;
+        top:100%;
+        left:100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding:30%;
+        border-radius: 20%;
+        color:white;
+        background-color: aqua;    
+    }
+
+    #body>#mainIntro>#intro>#movingCursor2{
+        position:absolute;
+        width:2vw;
+        height:2vw;
+        background-image: url("image/pointer2.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        z-index:-110;
+    }
+
+    #body>#mainIntro>#intro>#movingCursor2:after{
+        content: "Cheese";
+        position: relative;
+        top:100%;
+        left:100%;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        padding:30%;
+        border-radius: 10%;
+        color:white;
+        background-color: orange;  
+    }
+
+@media screen and (max-width:700px) {
+
     #body>#mainIntro>#intro>#bottomText{
         position:relative;
         display: flex;
@@ -474,6 +521,8 @@ body>#topBar>#closeApp{
 
 }
 
+
+
 #main>.item{
     position:relative;
     display:flex;
@@ -497,20 +546,81 @@ body>#topBar>#closeApp{
     }
 }
 
+@keyframes intro0{
+    to{
+        left:0%;
+        opacity: 1;
+    }
+}
+
+@keyframes intro1{
+    to{
+        left:0%;
+        opacity: 1;
+    }
+}
+
+@keyframes intro2{
+    to{
+        top:0%;
+        opacity: 1;
+    }
+}
+
+@keyframes intro4{
+    to{
+        bottom:0%;
+        opacity: 1;
+    }
+}
+
+@keyframes intro5{
+    to{
+        right:0%;
+        opacity: 1;
+    }
+}
+
+@keyframes intro6{
+    to{
+        right:0%;
+        opacity: 1;
+    }
+}
+
+@keyframes intro7{
+    to{
+        right:0%;
+        opacity: 1;
+    }
+}
 
 
 
 #main>#mainIcon{
     grid-area: 1/1/span 6/span 2;
-    display: flex;
+    display: grid;
+    grid: 30% 40% 10% 20%/ auto;
     align-items: center;
     flex-direction: column;
+    position:relative;
+    left:20%;
+    opacity: 0;
+    
 }
-#main>#mainIcon>#cheesePic{
+#main>#mainIcon>#myFaceContainer{
+    position:relative;
+    width:100%;
+    height:100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#main>#mainIcon>#myFaceContainer>#cheesePic{
     position:relative;
     display: flex;
-    width:8vw;
-    height:8vw;
+    width:5vw;
+    height:5vw;
     padding:2%;
     border-style:solid;
     border-color: yellow;
@@ -552,7 +662,7 @@ body>#topBar>#closeApp{
     position:relative;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
-    top:2%;
+    top:30%;
 }
 #main>#mainIcon>#social>.icon{
     position:relative;
@@ -578,6 +688,10 @@ body>#topBar>#closeApp{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    position: relative;
+    left:10%;
+    opacity: 0;
+
 }
 
 #main>#languageProf>#languageProfTitle{
@@ -615,11 +729,11 @@ body>#topBar>#closeApp{
 }
 #main>#languageProf>.language>.progress>#bar2{
     background-color: green;
-   animation: progress1 0.3s forwards;
+   animation: progress1 1.5s forwards;
 }
 #main>#languageProf>.language>.progress>#bar3{
     background-color: blue;
-   animation: progress1 0.3s forwards;
+   animation: progress1 1.5s forwards;
 }
 #main>#languageProf>.language>.progress>#bar1{
     position:relative;
@@ -662,6 +776,9 @@ body>#topBar>#closeApp{
     display:flex;
     flex-direction: column;
     font-size: medium;
+    position: relative;
+    top:10%;
+    opacity: 0;
 }
 #main>#aboutMe>#aboutMeTitle{
     color:white;
@@ -769,7 +886,7 @@ body>#topBar>#closeApp{
 }
 
 #main>#projects>#scroll>.project>.projectImg:hover>.projectItem{
-    animation: moveUp 0.1s forwards;
+    animation: moveUp 0.2s forwards;
 }
 
 @keyframes moveUp {
@@ -788,6 +905,8 @@ body>#topBar>#closeApp{
     grid-area: 8 / 3/span 4/span 2;
     display: flex;
     flex-direction: column;
+    bottom:10%;
+    opacity: 0;
 }
 #main>#programmingLangProf>#programmingLangProfTitle{
     color:white;
@@ -851,6 +970,9 @@ body>#topBar>#closeApp{
     grid-area: 1/5/ span 3/ span 1;
     display: flex;
     flex-direction: column;
+    position: relative;
+    right:10%;
+    opacity: 0;
 }
 #main>#certification>#certificationTitle{
     color:white;
@@ -890,6 +1012,9 @@ body>#topBar>#closeApp{
     display: flex;
     flex-direction: column;
     font-size:large;
+    position:relative;
+    right:10%;
+    opacity: 0;
 }
 #main>#experience>#experienceTitle{
     color:white;
@@ -937,7 +1062,9 @@ body>#topBar>#closeApp{
     grid-area: 7/5/ span 5/ span 1;
     display: flex;
     flex-direction: column;
-    
+    position:relative;
+    right:10%;
+    opacity: 0;
     justify-content: space-around;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -1000,7 +1127,7 @@ body>#topBar>#closeApp{
     font-size:small;
 }
 
-@media(min-width: 600px){
+@media(min-width: 700px){
     #main{
          grid: auto auto auto auto auto auto auto auto auto auto auto auto/ auto auto auto auto auto;
     }
@@ -1008,16 +1135,25 @@ body>#topBar>#closeApp{
 }
 
 
-@media (max-width: 600px){
+@media (max-width: 700px){
     #main{
         height:440%;
         overflow: scroll !important;
          grid: 20% 10% 10% 10% 10% 10% 10% 10%/ 100% !important;
     }
-    #main>#mainIcon>#cheesePic{
-        width:15vw;
-        height:15vw;
+    #main>#mainIcon>#myFaceContainer{
+        position: relative;
+        width:100%;
+        height:100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
+     #main>#mainIcon>#myFaceContainer>#cheesePic{
+        position: relative;
+        width:20vw;
+        height:20vw;
+     }
     #main>#mainIcon>#socialTitle{
         top:-5%;
     }
@@ -1086,10 +1222,11 @@ body>#topBar>#closeApp{
     left:0;
     height:100%;
     width:100%;
-    background-color: #333333;
+    background-color: black;
 }
 
-@media screen and (min-width:550px){
+@media screen and (min-width:700px){
+
     #blogMenu{
         display:grid;
         grid: 20% auto / auto auto auto;
@@ -1160,7 +1297,7 @@ body>#topBar>#closeApp{
     }
 }
 
-@media screen and (max-width:550px) {
+@media screen and (max-width:700px) {
     #blogMenu{
     position:absolute;
     top:540%;
@@ -1186,15 +1323,7 @@ body>#topBar>#closeApp{
         border-radius: 3%;
         display: grid;
         grid: 30% 70%/ 30% 70%;
-        background-color: #292929;
-    }
-    body>#blogMenu>#title{
-        font-size: xx-large;
-        display: flex;
-        align-items: center;
-        padding-left: 3%;
-        color:white;
-        font-weight: bold;
+        background-color: #333333;
     }
     body>#blogMenu>.blogItem:hover{
         animation: changeColor 0.2s linear forwards;
@@ -1236,7 +1365,7 @@ body>#topBar>#closeApp{
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-weight: bold;
         margin-left:10%;
-        font-size:-large;
+        font-size:x-large;
     }
        body>#blogMenu>.blogItem>.mainTextContainer>.subTextContainer{
         position:relative;

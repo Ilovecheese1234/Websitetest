@@ -5,12 +5,53 @@ const cursorDetectionBox =document.getElementById("cursorDetectionBox");
 const body = document.getElementById("body");
 const progressName = document.getElementsByClassName("progressName");
 const bar = document.getElementsByClassName("bar");
-const item = document.getElementsByClassName("item")
+
 
 const blogItem = document.getElementsByClassName("blogItem")
 const blogMenu = document.getElementById("blogMenu")
 
+const movingCursor1 = document.getElementById("movingCursor1");
+const movingCursor2 = document.getElementById("movingCursor2");
+
+const item = document.getElementsByClassName("item"); 
+
+
+
 const text = ["Beginner","Developing","Fluent","Native"]
+
+
+let angle = 0;
+if(window.innerWidth<700){
+    setInterval(()=>{
+    angle++;
+    let setDet1X = 30 * Math.sin(angle*Math.PI/180)+100;
+    let setDet1Y = 30 * Math.cos(angle*Math.PI/180)+100;
+    let setDet2X = 50 * Math.sin(angle*Math.PI/180+5*Math.PI/4)+window.innerWidth*0.7;
+    let setDet2Y = 50 * Math.cos(angle * Math.PI/180+5*Math.PI/4)+window.innerWidth*0.3;
+
+    
+    movingCursor1.style.top = `${setDet1Y}px`;
+    movingCursor1.style.left = `${setDet1X}px`;
+    movingCursor2.style.top = `${setDet2Y}px`;
+    movingCursor2.style.left = `${setDet2X}px`;
+},30)
+}
+else{
+     setInterval(()=>{
+    angle++;
+    let setDet1X = 30 * Math.sin(angle*Math.PI/180)+100;
+    let setDet1Y = 30 * Math.cos(angle*Math.PI/180)+100;
+    let setDet2X = 50 * Math.sin(angle*Math.PI/180+5*Math.PI/4)+window.innerWidth*0.5;
+    let setDet2Y = 50 * Math.cos(angle * Math.PI/180+5*Math.PI/4)+window.innerWidth*0.2;
+
+    
+    movingCursor1.style.top = `${setDet1Y}px`;
+    movingCursor1.style.left = `${setDet1X}px`;
+    movingCursor2.style.top = `${setDet2Y}px`;
+    movingCursor2.style.left = `${setDet2X}px`;
+},30)
+}
+
 
 let load = 0; 
 let textSel = 0;
@@ -120,7 +161,6 @@ function closeApp(){
 }
 
 
-let loaded = [0];
 let blogScreenY = blogMenu.offsetTop;
 
 if(window.innerWidth>550){
@@ -128,7 +168,7 @@ if(window.innerWidth>550){
         e.preventDefault();
         let scrollY = this.scrollY;
         let percentage = (1.1*scrollY/blogScreenY)*100;
-        if(percentage>=40){
+        if(percentage>=60){
             let time = 0;
             let interval = setInterval(()=>{
                 if(time==0){
@@ -137,18 +177,37 @@ if(window.innerWidth>550){
                     }
                     
                 }
-                if(time==280){
+                if(time==360){
                     for(i = 0;i<3;i++){
                         blogItem[i].style.animation = "";
                         blogItem[i].style.opacity = 1;
                         blogItem[i].style.top = 0;
-                        loaded[0] = 1;
                         loadHoverAnimation();
                         clearInterval(interval);
                     }
                 }
                 time++;
             },10)            
+        }
+        else if(percentage>=40 && percentage<60){
+            let time = 0;
+            let interval = setInterval(()=>{
+                if(time==0){
+                    for(i = 0;i<8;i++){
+                        item[i].style.animation = `intro${i} 0.5s ${i*0.2}s ease-in-out forwards`;
+                    }
+                    
+                }
+                if(time==190){
+                    for(i = 0;i<8;i++){
+                        item[i].style.animation = "";
+                        item[i].style.opacity = 1;
+                    }
+                    loadMainElement();
+                    clearInterval(interval);
+                }
+                time++;
+            },10)
         }
 })
 
@@ -158,7 +217,7 @@ let activities = document.getElementById("activities");
 let work = document.getElementById("work");
 
 function loadHoverAnimation(){
-    academic.addEventListener("mouseover",(e)=>{
+            academic.addEventListener("mouseover",(e)=>{
         academic.style.animation = "changeColor 0.2s linear forwards";
     })
     academic.addEventListener("mouseleave",(e)=>{
@@ -178,6 +237,28 @@ function loadHoverAnimation(){
     work.addEventListener("mouseleave",(e)=>{
         work.style.animation = "fadeColor 0.2s linear forwards";
     })
+    }
+
+
+
 }
 
+function loadMainElement(){
+    for(i=0;i<8;i++){
+        item[i].addEventListener("mouseover",(e)=>{
+            item[i].style.animation = "zoomInItem 0.2s forwards";
+        })
+        if(i==0||i==1){
+            item[i].style.left = "0%";
+        }
+        else if(i==2){
+            item[i].style.top = "0%";
+        }
+        else if(i==4){
+            item[i].style.bottom = "0%";
+        }
+        else{
+            item[i].style.right = "0%";
+        }
+    }
 }
